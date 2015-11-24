@@ -8,5 +8,8 @@ namespace TTMovieModel.Model
 {
     public interface IMovieInformation
     {
+        IList<Movie> getAllMovies(string name);
+ 
+
     }
 }
