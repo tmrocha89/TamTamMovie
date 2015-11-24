@@ -53,6 +53,7 @@
     <Compile Include="DAL\SocialNetworkRepository.cs" />
     <Compile Include="Model\MovieInformationLayer\IMovieInformation.cs" />
     <Compile Include="Model\SocialNetworkLayer\ISocialNetwork.cs" />
+    <Compile Include="Model\Title.cs" />
     <Compile Include="Model\VideoProviderLayer\IVideoProvider.cs" />
     <Compile Include="Model\Star.cs" />
     <Compile Include="Model\SocialNetworkLayer\TwitterSocialNetwork.cs" />

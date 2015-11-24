@@ -5,6 +5,7 @@ namespace TTMovieModel.Model
     public class Movie
     {
         public string ID { get; set; }
+        public Title Title { get; set; }
         public int Year { get; set; }
         public IList<Writer> Writers { get; }
         public IList<Director> Directors { get; }
