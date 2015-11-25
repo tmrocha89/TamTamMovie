@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TTMovieModel.Model;
@@ -13,8 +14,8 @@ namespace TamTamMovie.Controllers
         {
             ViewBag.Title = "Home Page";
             ImdbMovieInformation imdb = new ImdbMovieInformation();
-            imdb.getAllMovies("Minions");
-            return View();
+            IList<Movie> movies = imdb.getAllMovies("Minions");
+            return View(movies);
         }
     }
 }

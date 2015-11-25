@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -10,21 +12,34 @@ namespace TTMovieModel.Model
 {
     public class ImdbMovieInformation : IMovieInformation
     {
+        private static string[] arroz = { "title_popular", "title_substring", "title_approx" };
+
         //http://www.imdb.com/xml/find?json=1&tt=on&q=Minions
         private static string BaseURL = "http://www.imdb.com/xml/find?json=1&tt=on&q=";
 
         public IList<Movie> getAllMovies(string name)
         {
-            //ToDo implement
-            var json = new WebClient().DownloadString(BaseURL + name);
-            /*
-            var result = JsonConvert.DeserializeObject<IEnumerable<Movie>>(json);
-            foreach(var res in result)
-            {
-                Console.WriteLine(res.Title.Name);
+            IList<Movie> movies = new List<Movie>();
+            string url = BaseURL + name;
+            
+            using (WebClient webClient = new WebClient())
+            {               
+                var jsonText = webClient.DownloadString(url);
+//                Debug.WriteLine("My debug string here");
+                JObject jobject = JObject.Parse(jsonText);
+                for (int i = 0; i < jobject.Count; i++)
+                {
+                    var jsonMovie = jobject[arroz[i]];
+                    foreach (var jMovie in jsonMovie)
+                    {
+                        movies.Add(ImdbParser.ParseToMovie(jMovie));
+                        Console.WriteLine(movies.Count);
+                    }
+
+                }
             }
-            */
-            return null;
+
+            return movies;
         }
     }
 }

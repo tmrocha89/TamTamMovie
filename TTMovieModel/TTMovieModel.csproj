@@ -47,6 +47,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Model\Director.cs" />
     <Compile Include="Model\MovieInformationLayer\ImdbMovieInformation.cs" />
+    <Compile Include="Model\MovieInformationLayer\ImdbParser.cs" />
     <Compile Include="Model\MovieInformationLayer\RottenTomatoesMovieInformation.cs" />
     <Compile Include="Model\SocialNetworkLayer\FacebookSocialNetwork.cs" />
     <Compile Include="Model\Genre.cs" />
