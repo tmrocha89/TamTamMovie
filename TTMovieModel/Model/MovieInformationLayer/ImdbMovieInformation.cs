@@ -17,15 +17,15 @@ namespace TTMovieModel.Model
         //http://www.imdb.com/xml/find?json=1&tt=on&q=Minions
         private static string BaseURL = "http://www.imdb.com/xml/find?json=1&tt=on&q=";
 
-        public IList<Movie> getAllMovies(string name)
+        public async Task<IList<Movie>> getAllMovies(string name)
         {
             IList<Movie> movies = new List<Movie>();
             string url = BaseURL + name;
             
             using (WebClient webClient = new WebClient())
             {               
-                var jsonText = webClient.DownloadString(url);
-//                Debug.WriteLine("My debug string here");
+                var jsonText = await webClient.DownloadStringTaskAsync(url);
+                Debug.WriteLine("My debug string here");
                 JObject jobject = JObject.Parse(jsonText);
                 for (int i = 0; i < jobject.Count; i++)
                 {

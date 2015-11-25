@@ -8,7 +8,7 @@ namespace TTMovieModel.Model
 {
     public class RottenTomatoesMovieInformation : IMovieInformation
     {
-        public IList<Movie> getAllMovies(string name)
+        public Task<IList<Movie>> getAllMovies(string name)
         {
             throw new NotImplementedException();
         }
