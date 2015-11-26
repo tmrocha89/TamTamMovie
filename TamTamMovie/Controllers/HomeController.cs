@@ -37,15 +37,24 @@ namespace TamTamMovie.Controllers
 
             //  Cache.["Movies"] = movies;
             MovieCache.AddMovies(movies);
-           // movies = await LoadVideos(null);
-
+            //Task<IList<Movie>> moviess = LoadVideos(null);
+            Task task = Task.Factory.StartNew(() => SearchVideosAsync(movies) );
             AsyncManager.OutstandingOperations.Decrement();
             return View("ViewMovieInformation", movies);
         }
 
+        private async Task<ActionResult> SearchVideosAsync(IList<Movie> movies)
+        {
+            //AsyncManager.OutstandingOperations.Increment();
+            movies = await LoadVideos(movies);
+            return View(movies);
+            //AsyncManager.OutstandingOperations.Decrement();
+        }
+
+
         public async Task<IList<Movie>> LoadVideos(IList<Movie> movies)
         {
-            movies = MovieCache.GetAllMovies();
+            movies = MovieCache.GetAMovies("Minions");
             YoutubeVideoProvider yt = new YoutubeVideoProvider();
             foreach( Movie movie in movies)
             {

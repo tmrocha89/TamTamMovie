@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
@@ -14,21 +16,28 @@ namespace TamTamMovie.Models
         {
             foreach(Movie movie in movies)
             {
-                HttpContext.Current.Cache.Insert(movie.ID, movie, null, DateTime.Now, Cache.NoSlidingExpiration);
+                HttpContext.Current.Cache[movie.ID] = movie;
             }
-           // HttpContext.Current.Cache.Insert("myStringKey", "my ObjectValue", null,
-           //     DateTime.Now, Cache.NoSlidingExpiration);
         }
 
-        public static IList<Movie> GetAllMovies()
+        public static IList<Movie> GetAMovies(string movieName)
         {
             IList<Movie> movies = new List<Movie>();
-
-            foreach (Movie movie in HttpContext.Current.Cache)
+            foreach (DictionaryEntry DEmovie in HttpContext.Current.Cache)
             {
-                movies.Add(movie);
+                try {
+                    Movie movieTmp = DEmovie.Value as Movie;
+                    if (movieTmp.Title.Name.Contains(movieName))
+                    {
+                        movies.Add(movieTmp);
+                    }
+                }catch(NullReferenceException)
+                {
+                    // DEmovie is not a movie
+                    // best luck in next try :P
+                    Debug.Write(DEmovie);
+                }
             }
-
             return movies;
         }
 

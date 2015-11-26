@@ -6,14 +6,23 @@
 
 @foreach (var item in Model)
 {
-
-    <div class="col-md-5">
-        <h2>@Html.DisplayFor(modelItem => item.Title.Name)</h2>
-        <p> @Html.DisplayFor(modelItem => item.ID) </p>
-        <p><strong>Year</strong> @Html.DisplayFor(modelItem => item.Year) </p>
-        <p>
-            @Html.DisplayFor(modelItem => item.Resume)
-        </p>
-        <p><a class="btn btn-default">Ver trailer</a></p>
+    <div class="col-md-3 col-sm-5 col-xs-12">
+        <div  style="position:relative;">
+            <img src="http://myrwithlove.com/wp-content/uploads/2015/10/saw-v-poster2.jpg" class="img-responsive" alt="Cinque Terre">
+            <div style="background-color: #000;
+                        bottom: 0;
+                        right: auto;
+                        color: #fff;
+                        opacity: 0.45;
+                        position: absolute;
+                        width: 100%;">
+                <div style="padding-left:10px;">
+                    <h3 >@Html.DisplayFor(modelItem => item.Title.Name)</h3>
+                    @Html.HiddenFor(modelItem => item.ID)
+                    <h4>@Html.DisplayFor(modelItem => item.Year)</h4>
+                </div>
+            </div>
+        </div>
     </div>
+
 }
