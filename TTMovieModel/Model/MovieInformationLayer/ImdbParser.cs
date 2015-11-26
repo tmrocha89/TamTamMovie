@@ -19,7 +19,7 @@ namespace TTMovieModel.Model
         private static string MOVIE_DESCRIPTION = "description";
         
 
-        public static Movie ParseToMovie(JToken jsonMovie)
+        public static Movie GetBasicMovieInformation(JToken jsonMovie)
         {
             Movie movie = new Movie();
             movie.ID = GetID(jsonMovie);

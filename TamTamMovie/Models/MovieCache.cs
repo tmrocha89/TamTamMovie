@@ -49,6 +49,11 @@ namespace TamTamMovie.Models
             }
         }
 
+        public static Movie getMovie(string movieID)
+        {
+            return HttpContext.Current.Cache[movieID] as Movie;
+        }
+
         public static void Remove(Movie movie)
         {
             HttpContext.Current.Cache.Remove(movie.ID);

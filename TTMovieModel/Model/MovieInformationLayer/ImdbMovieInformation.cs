@@ -12,7 +12,7 @@ namespace TTMovieModel.Model
 {
     public class ImdbMovieInformation : IMovieInformation
     {
-        private static string[] arroz = { "title_popular", "title_substring", "title_approx" };
+        private static string[] arrayNames = { "title_popular", "title_substring", "title_approx" };
 
         //http://www.imdb.com/xml/find?json=1&tt=on&q=Minions
         private static string BaseURL = "http://www.imdb.com/xml/find?json=1&tt=on&q=";
@@ -29,10 +29,10 @@ namespace TTMovieModel.Model
                 JObject jobject = JObject.Parse(jsonText);
                 for (int i = 0; i < jobject.Count; i++)
                 {
-                    var jsonMovie = jobject[arroz[i]];
+                    var jsonMovie = jobject[arrayNames[i]];
                     foreach (var jMovie in jsonMovie)
                     {
-                        movies.Add(ImdbParser.ParseToMovie(jMovie));
+                        movies.Add(ImdbParser.GetBasicMovieInformation(jMovie));
                         Console.WriteLine(movies.Count);
                     }
 

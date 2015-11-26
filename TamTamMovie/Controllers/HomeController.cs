@@ -52,6 +52,17 @@ namespace TamTamMovie.Controllers
         }
 
 
+
+
+        public async Task<ActionResult> GetMovie(string movieID)
+        {
+            Movie movie = MovieCache.getMovie(movieID);
+            YoutubeVideoProvider yt = new YoutubeVideoProvider();
+            movie.Trailer = yt.getVideo(movie.Title.Name);
+
+            return View("ViewMovieDetailInfo", movie);
+        }
+             
         public async Task<IList<Movie>> LoadVideos(IList<Movie> movies)
         {
             movies = MovieCache.GetAMovies("Minions");

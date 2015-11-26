@@ -6,7 +6,8 @@
 
 @foreach (var item in Model)
 {
-    <div class="col-md-3 col-sm-5 col-xs-12">
+
+    <div class="col-md-3 col-sm-5 col-xs-12" onclick="setMovieInMainContent('@item.ID')" >
         <div  style="position:relative;">
             <img src="http://myrwithlove.com/wp-content/uploads/2015/10/saw-v-poster2.jpg" class="img-responsive" alt="Cinque Terre">
             <div style="background-color: #000;
