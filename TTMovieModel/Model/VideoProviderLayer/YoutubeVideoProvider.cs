@@ -15,40 +15,40 @@ namespace TTMovieModel.Model
 
     public class YoutubeVideoProvider : IVideoProvider
     {
-        private static string ApiKey = "AIzaSyCh7VANgjDUfuLsH-nMOAzwC04c8CL8Fwo";
-        private static int MaxResults = 10;
+        private const string API_KEY = "AIzaSyCh7VANgjDUfuLsH-nMOAzwC04c8CL8Fwo";
+        private const string EMBEBED_BASE_URL = "https://youtu.be/";
+        private const int MAX_RESULTS = 10;
 
 
-        public void /*async Task*/ Run()
+        public Video /*async Task*/ getVideo(string videoName)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                
-                ApiKey = ApiKey,
+                ApiKey = API_KEY,
                 ApplicationName = this.GetType().ToString()
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = "Minions"; // Replace with your search term.
-            searchListRequest.MaxResults = MaxResults;
+            searchListRequest.Q = videoName;
+            searchListRequest.MaxResults = MAX_RESULTS;
+
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = /*await*/ searchListRequest.Execute(); // ExecuteAsync();
             List<string> videos = new List<string>();
-            List<string> channels = new List<string>();
-            List<string> playlists = new List<string>();
-            // Add each result to the appropriate list, and then display the lists of
-            // matching videos, channels, and playlists.
+
             Debug.WriteLine(" A ESCREVER A ASDASDASDASD");
             foreach (var searchResult in searchListResponse.Items)
             {
 
                 if (searchResult.Id.Kind == "youtube#video")
                 {
-                    videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.VideoId));
+                    return new Video( EMBEBED_BASE_URL + searchResult.Id.VideoId);
+                    //videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.VideoId));
                 }
             }
 
-            Debug.WriteLine(String.Format("Videos:\n{0}\n", string.Join("\n", videos)));
+            // Debug.WriteLine(String.Format("Videos:\n{0}\n", string.Join("\n", videos)));
+            return null;
         }
 
 
