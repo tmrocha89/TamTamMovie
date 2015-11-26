@@ -15,6 +15,31 @@
     <div class="col-md-6">
 
         <h2>@Model.Title.Name</h2>
+        <h3>Year: @Model.Year</h3>
+        
+        <h4>Writer(s)</h4>
+        @foreach (var wt in Model.Writers)
+        {
+            <h4>@wt.Name</h4>
+        }
+
+        <h4>Directors</h4>
+        @foreach (var dir in Model.Directors)
+        {
+            <h4>@dir.Name</h4>
+        }
+
+        <h4>Stars</h4>
+        @foreach (var star in Model.Stars)
+        {
+            <h4>@star.Name</h4>
+        }
+
+        <h5>Resume</h5>
+        <p>@Model.Resume</p>
+
+        
+
 
     </div>
 
