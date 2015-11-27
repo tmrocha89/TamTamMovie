@@ -12,7 +12,7 @@ namespace TTMovieModel.Model
         public IList<Star> Stars { get; }
         public IList<Genre> Genres { get; }
         public string Resume { get; set; }
-        public Video Trailer { get; set; }
+        public IList<Video> Trailers { get; }
 
         public Movie()
         {
@@ -20,6 +20,7 @@ namespace TTMovieModel.Model
             Directors = new List<Director>();
             Stars = new List<Star>();
             Genres = new List<Genre>();
+            Trailers = new List<Video>();
         }
 
         public void AddWriter(Writer writer)
@@ -54,5 +55,23 @@ namespace TTMovieModel.Model
             }
         }
 
+        public void AddTrailer(Video video)
+        {
+            if(video != null)
+            {
+                Trailers.Add(video);
+            }
+        }
+
+        public void AddTrailers(IList<Video> videos)
+        {
+            if (videos!= null)
+            {
+                foreach(var video in videos)
+                {
+                    Trailers.Add(video);
+                }
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace TamTamMovie.Controllers
            // Task<IList<Movie>> movies = imdb.getAllMovies("Minions");
 
             YoutubeVideoProvider youtube = new YoutubeVideoProvider();
-            Video video = youtube.getVideo("Minions");
+            //IList<Video> videos = youtube.getVideo("Minions");
             IList<Movie> movies = new List<Movie>();
             return View(movies);
         }
@@ -58,7 +58,7 @@ namespace TamTamMovie.Controllers
         {
             Movie movie = MovieCache.getMovie(movieID);
             YoutubeVideoProvider yt = new YoutubeVideoProvider();
-            movie.Trailer = yt.getVideo(movie.Title.Name);
+            movie.AddTrailers(yt.getVideo(movie.Title.Name));
 
             return View("ViewMovieDetailInfo", movie);
         }
@@ -69,7 +69,7 @@ namespace TamTamMovie.Controllers
             YoutubeVideoProvider yt = new YoutubeVideoProvider();
             foreach( Movie movie in movies)
             {
-                movie.Trailer = yt.getVideo(movie.Title.Name);
+                movie.AddTrailers(yt.getVideo(movie.Title.Name));
             }
             return movies;
         }
