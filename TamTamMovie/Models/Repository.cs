@@ -62,5 +62,15 @@ namespace TamTamMovie.Models
         {
             MovieCache.Clear();
         }
+
+        public void LoadVideo(string movieID)
+        {
+            Movie movie = MovieCache.getMovie(movieID);
+            if (movie != null)
+            {
+                movie.Trailers = dataAccess.GetVideoFor(movie.Title.Name);
+                MovieCache.UpdateMovie(movie);
+            }
+        }
     }
 }

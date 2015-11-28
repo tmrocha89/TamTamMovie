@@ -15,17 +15,6 @@ var GetMoviesCover = function () {
         return this.id;
     }).get();
     LoadCover(IdArrays, 0);
-    /*
-    for (var i = 0; i < IdArrays.length; i++) {
-        var url = "/Home/LoadCoverFor?movieID=" + IdArrays[i];
-        $.get(url, null, function (imageUrl) {         
-            if (imageUrl != "N/A") {
-                alert(imageUrl);
-                $('#'+IdArrays[i]).attr('src',imageUrl);
-            }
-        });
-    }
-    */
 };
 
 var LoadCover = function (IdArray, position) {
@@ -33,29 +22,21 @@ var LoadCover = function (IdArray, position) {
         var url = "/Home/LoadCoverFor?movieID=" + IdArray[position];
         $.get(url, null, function (imageUrl) {
             if (imageUrl !== "N/A") {
-                alert(imageUrl);
                 $('#' + IdArray[position]).attr('src', imageUrl);
             }
             LoadCover(IdArray, position + 1);
+            LoadTrailersToCache(IdArray[position]);
         });
     }
 };
 
-/*
-$('#MovieInformationContent').bind('DOMNodeInserted', function (event) {
-    
-    if (this.innerHTML != "") {
-        var movieID = this.getElementsByTagName("img")[0].id;
-        //alert(movieID);
-    }
 
-});
-*/
+var LoadTrailersToCache = function (movieID) {
+    var url = "/Home/LoadVideos?movieID=" + movieID;
+    $.get(url, null, null);
+};
 
 
-$('img').load(function () {
-    alert(this.id);
-});
 
 var setMovieInMainContent = function (movieName) {
     var url = "/Home/GetMovie?movieID=" + movieName;

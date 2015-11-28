@@ -14,7 +14,7 @@ namespace TTMovieModel.Model
         public IList<Genre> Genres { get; set; }
         public string Resume { get; set; }
         public Image Cover { get; set; }
-        public IList<Video> Trailers { get; }
+        public IList<Video> Trailers { get; set; }
 
         public Movie()
         {
