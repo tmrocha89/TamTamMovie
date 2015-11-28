@@ -1,7 +1,7 @@
 ﻿// This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
-        shareVideo();
+        console.log("connected");
     } else if (response.status === 'not_authorized') {
         document.getElementById('status').innerHTML = 'Please log ' +
           'into this app.';
