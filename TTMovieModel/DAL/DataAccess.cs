@@ -33,5 +33,15 @@ namespace TTMovieModel.DAL
         {
             return await movieDA.GetCoverFor(movieID);
         }
+
+        public IList<string> GetSocialNetworkAvailable()
+        {
+            return socialDA.GetSocialNetworkAvailable();
+        }
+
+        public Task<Movie> GetInformationFor(Movie movie)
+        {
+            return movieDA.GetInformationFor(movie);
+        }
     }
 }

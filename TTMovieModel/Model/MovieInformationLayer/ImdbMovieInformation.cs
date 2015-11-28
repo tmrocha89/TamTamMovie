@@ -52,7 +52,7 @@ namespace TTMovieModel.Model
             return movies;
         }
 
-        private async Task<Movie> getFullDescriptionFor(Movie movie)
+        public async Task<Movie> getFullDescriptionFor(Movie movie)
         {
             string url = BEGIN_DESCRIPTION_URL + movie.ID + END_DESCRITPION_URL;
             using (WebClient webClient = new WebClient())
@@ -85,6 +85,30 @@ namespace TTMovieModel.Model
                 }
 
             }
+        }
+
+        public async Task<Movie> GetInformationFor(Movie movie)
+        {
+            
+            string url = BEGIN_DESCRIPTION_URL + movie.ID + END_DESCRITPION_URL;
+            using (WebClient webClient = new WebClient())
+            {
+                try
+                {
+                    var jsonText = webClient.DownloadString(url);
+
+                    JObject movieJson = JObject.Parse(jsonText);
+
+                    return parser.GetDetailInformation(movieJson, movie);
+                }
+                catch (WebException ex)
+                {
+                    Debug.WriteLine("Link: " + url + "\n" + ex.Message);
+                    return movie;
+                }
+
+            }
+            
         }
 
 

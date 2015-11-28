@@ -32,5 +32,10 @@ namespace TTMovieModel.DAL
         {
             return await movieInfo.GetCoverFor(movieID);
         }
+
+        public Task<Movie> GetInformationFor(Movie movie)
+        {
+            return movieInfo.GetInformationFor(movie);
+        }
     }
 }

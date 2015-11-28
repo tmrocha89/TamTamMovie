@@ -17,5 +17,10 @@ namespace TTMovieModel.Model
         {
             throw new NotImplementedException();
         }
+
+        public Task<Movie> GetInformationFor(Movie movie)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

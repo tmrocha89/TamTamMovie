@@ -10,5 +10,6 @@ namespace TTMovieModel.Model
     {
         Task<IList<Movie>> getAllMovies(string name);
         Task<Image> GetCoverFor(string movieID);
+        Task<Movie> GetInformationFor(Movie movie);
     }
 }

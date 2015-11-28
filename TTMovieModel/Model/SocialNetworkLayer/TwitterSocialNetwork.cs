@@ -8,5 +8,6 @@ namespace TTMovieModel.Model
 {
     public class TwitterSocialNetwork : ISocialNetwork
     {
+        public string Name { get; set; }
     }
 }

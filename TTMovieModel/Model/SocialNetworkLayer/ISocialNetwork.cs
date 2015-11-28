@@ -8,5 +8,6 @@ namespace TTMovieModel.Model
 {
     public interface ISocialNetwork
     {
+        string Name { get; }
     }
 }

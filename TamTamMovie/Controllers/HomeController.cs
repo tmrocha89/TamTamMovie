@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using TTMovieModel.Model;
 using TamTamMovie.Models;
+using System.Diagnostics;
 
 namespace TamTamMovie.Controllers
 {
@@ -11,8 +12,10 @@ namespace TamTamMovie.Controllers
 
         private Repository repository = new Repository();
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
+            if (id != null)
+                Debug.WriteLine(id);
             ViewBag.Title = "Home Page";
             IList<Movie> movies = new List<Movie>();
             return View();
@@ -35,13 +38,12 @@ namespace TamTamMovie.Controllers
             return null;
         }
 
-        public void LoadVideos(string movieID)
+        public async Task<Movie> LoadDetailedData(string movieID)
         {
-            repository.LoadVideo(movieID);
+            return await repository.LoadDetailedData(movieID);
         }
 
-
-
+        //used in Javascript
         public async Task<ActionResult> GetMovie(string movieID)
         {
             Movie movie = MovieCache.getMovie(movieID);
@@ -49,6 +51,11 @@ namespace TamTamMovie.Controllers
             movie.AddTrailers(yt.GetVideoFor(movie.Title.Name));
 
             return View("ViewMovieDetailInfo", movie);
+        }
+
+        private IList<string> GetSocialNetworkAvailable()
+        {
+            return repository.GetSocialNetworkAvailable();
         }
     }
 }

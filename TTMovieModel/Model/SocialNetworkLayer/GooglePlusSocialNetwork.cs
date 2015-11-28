@@ -8,5 +8,6 @@ namespace TTMovieModel.Model
 {
     public class GooglePlusSocialNetwork : ISocialNetwork
     {
+        public string Name { get; set; }
     }
 }

@@ -58,19 +58,27 @@ namespace TamTamMovie.Models
             return image;
         }
 
+        internal IList<string> GetSocialNetworkAvailable()
+        {
+            return dataAccess.GetSocialNetworkAvailable();
+        }
+
         public void Clear()
         {
             MovieCache.Clear();
         }
 
-        public void LoadVideo(string movieID)
+        public async Task<Movie> LoadDetailedData(string movieID)
         {
             Movie movie = MovieCache.getMovie(movieID);
             if (movie != null)
             {
+                movie = await dataAccess.GetInformationFor(movie);
                 movie.Trailers = dataAccess.GetVideoFor(movie.Title.Name);
                 MovieCache.UpdateMovie(movie);
+                return movie;
             }
+            return null;
         }
     }
 }
