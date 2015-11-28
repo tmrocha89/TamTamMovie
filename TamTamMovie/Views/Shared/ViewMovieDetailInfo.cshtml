@@ -10,7 +10,9 @@
         <div class="embed-responsive embed-responsive-16by9" style="overflow:hidden;position:relative; height:0;padding-bottom:56.25%">
             <iframe class="embed-responsive-item" src="@Model.Trailers[0].Link" allowfullscreen style="width:100%; height:100%;position:absolute;top:0;left:0;"></iframe>
         </div>
-
+        <div id="SocialNetworkButtons">
+            <button onclick='login()'>Facebook Login</button>
+        </div>
     </div>
 
     <div class="col-md-6">
@@ -21,22 +23,22 @@
         <h4>Writer(s)</h4>
         @foreach (var wt in Model.Writers)
         {
-            <h4>@wt.Name</h4>
+            <p>@wt.Name</p>
         }
 
         <h4>Directors</h4>
         @foreach (var dir in Model.Directors)
         {
-            <h4>@dir.Name</h4>
+            <p>@dir.Name</p>
         }
 
         <h4>Stars</h4>
         @foreach (var star in Model.Stars)
         {
-            <h4>@star.Name</h4>
+            <p>@star.Name</p>
         }
 
-        <h5>Resume</h5>
+        <h4>Resume</h4>
         <p>@Model.Resume</p>
 
         
