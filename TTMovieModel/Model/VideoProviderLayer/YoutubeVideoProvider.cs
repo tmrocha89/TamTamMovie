@@ -16,7 +16,7 @@ namespace TTMovieModel.Model
     public class YoutubeVideoProvider : IVideoProvider
     {
         private const string API_KEY = "AIzaSyCh7VANgjDUfuLsH-nMOAzwC04c8CL8Fwo";
-        private const string EMBEBED_BASE_URL = "http://youtube.com/v/"; //"https://youtu.be/";
+        private const string EMBEBED_BASE_URL = "https://youtube.com/v/"; //"https://youtu.be/";
         private const int MAX_RESULTS = 10;
 
 
