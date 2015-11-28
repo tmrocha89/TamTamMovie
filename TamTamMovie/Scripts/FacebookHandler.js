@@ -54,7 +54,7 @@ function shareVideo() {
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
     var movieThumbnail = mainDiv.getElementsByTagName('span')[0].innerText;
     var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
-    var movieResume = mainDiv.getElementById('movieResume').innerText;
+    var movieResume = document.getElementById('movieResume').innerText;
 
     FB.api('/me/feed', 'post',
                     {
