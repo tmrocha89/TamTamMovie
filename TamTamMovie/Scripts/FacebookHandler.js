@@ -52,9 +52,10 @@ window.fbAsyncInit = function () {
 function shareVideo() {
     var mainDiv = document.getElementById('MovieDetailInformation');
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
+    var movieThumbnail = mainDiv.getElementsByTagName('span')[0].innerText;
     var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
 
-    FB.api('/me/feed', 'post', { message: movieTitle, source: movieTrailer, picture: movieTrailer },
+    FB.api('/me/feed', 'post', { message: movieTitle, source: movieTrailer, picture: movieThumbnail },
         function (response) {
         if (!response || response.error) {
             alert("Error post");

@@ -42,7 +42,7 @@ namespace TTMovieModel.Model
 
                 if (searchResult.Id.Kind == "youtube#video")
                 {
-                    videos.Add(new Video( EMBEBED_BASE_URL + searchResult.Id.VideoId));
+                    videos.Add(new Video( EMBEBED_BASE_URL + searchResult.Id.VideoId , new Image(searchResult.Snippet.Thumbnails.Default__.Url)) );
                 }
             }
             return videos;
