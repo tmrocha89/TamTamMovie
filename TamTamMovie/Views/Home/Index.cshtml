@@ -73,12 +73,15 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
+      var body = 'Reading JS SDK documentation';
+
+      FB.api('/me/feed', 'post', { message: body }, function (response) {
+          if (!response || response.error) {
+              alert('Error occured');
+          } else {
+              alert('Post ID: ' + response.id);
+          }
+      });
   }
 </script>
 
@@ -90,8 +93,6 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
-
 
 <div class="jumbotron">
     <h1>TamTam Movies</h1>
