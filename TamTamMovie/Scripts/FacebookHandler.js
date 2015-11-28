@@ -3,7 +3,7 @@
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
-        drawFbButton();
+        drawFbShareButton();
     } else {
         login();
     }
