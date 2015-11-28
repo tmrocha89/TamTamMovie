@@ -20,7 +20,7 @@ namespace TTMovieModel.Model
         private const int MAX_RESULTS = 10;
 
 
-        public IList<Video> /*async Task*/ getVideo(string videoName)
+        public IList<Video> /*async Task*/ GetVideoFor(string videoName)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -36,7 +36,7 @@ namespace TTMovieModel.Model
             var searchListResponse = /*await*/ searchListRequest.Execute(); // ExecuteAsync();
             //List<string> videosStr = new List<string>();
             IList<Video> videos = new List<Video>();
-            Debug.WriteLine(" A ESCREVER A ASDASDASDASD");
+            Debug.WriteLine(" A obter videos do youtube ");
             foreach (var searchResult in searchListResponse.Items)
             {
 
@@ -50,8 +50,6 @@ namespace TTMovieModel.Model
             // Debug.WriteLine(String.Format("Videos:\n{0}\n", string.Join("\n", videos)));
             return videos;
         }
-
-
 
     }
 }

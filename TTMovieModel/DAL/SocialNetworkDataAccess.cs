@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TTMovieModel.DAL
 {
-    public class MovieRepository
+    public class SocialNetworkDataAccess
     {
     }
 }

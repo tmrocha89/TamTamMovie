@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TTMovieModel.Model
 {
@@ -7,11 +8,12 @@ namespace TTMovieModel.Model
         public string ID { get; set; }
         public Title Title { get; set; }
         public int Year { get; set; }
-        public IList<Writer> Writers { get; }
-        public IList<Director> Directors { get; }
-        public IList<Star> Stars { get; }
-        public IList<Genre> Genres { get; }
+        public IList<Writer> Writers { get; set; }
+        public IList<Director> Directors { get; set; }
+        public IList<Star> Stars { get; set; }
+        public IList<Genre> Genres { get; set; }
         public string Resume { get; set; }
+        public Image Cover { get; set; }
         public IList<Video> Trailers { get; }
 
         public Movie()
@@ -21,6 +23,9 @@ namespace TTMovieModel.Model
             Stars = new List<Star>();
             Genres = new List<Genre>();
             Trailers = new List<Video>();
+            ID = "";
+            Resume = "";
+            Year = 0;
         }
 
         public void AddWriter(Writer writer)
@@ -37,6 +42,13 @@ namespace TTMovieModel.Model
             {
                 Directors.Add(director);
             }
+        }
+
+        public bool hasCover()
+        {
+            if (Cover == null)
+                return false;
+            return !String.IsNullOrEmpty(Cover.Link);
         }
 
         public void AddStar(Star star)

@@ -9,7 +9,6 @@ namespace TTMovieModel.Model
     public interface IMovieInformation
     {
         Task<IList<Movie>> getAllMovies(string name);
- 
-
+        Task<Image> GetCoverFor(string movieID);
     }
 }

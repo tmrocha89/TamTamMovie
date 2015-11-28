@@ -12,5 +12,10 @@ namespace TTMovieModel.Model
         {
             throw new NotImplementedException();
         }
+
+        public Task<Image> GetCoverFor(string movieID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

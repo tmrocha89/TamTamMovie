@@ -8,5 +8,6 @@ namespace TTMovieModel.Model
 {
     public interface IVideoProvider
     {
+        IList<Video> GetVideoFor(string movieID);
     }
 }

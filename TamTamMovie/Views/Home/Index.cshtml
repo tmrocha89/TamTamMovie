@@ -13,20 +13,22 @@
 
 <div id="MovieInformationContent" class="row">
 
-    @foreach (var item in Model)
+    @if (Model != null)
     {
+        foreach (var item in Model)
+        {
 
-        <div class="col-md-5">
-            <h2>@Html.DisplayFor(modelItem => item.Title.Name)</h2>
-            <p> @Html.DisplayFor(modelItem => item.ID) </p>
-            <p><strong>Year</strong> @Html.DisplayFor(modelItem => item.Year) </p>
-            <p>
-                @Html.DisplayFor(modelItem => item.Resume)
-            </p>
-            <p><a class="btn btn-default">Ver trailer</a></p>
-        </div>
+            <div class="col-md-5">
+                <h2>@Html.DisplayFor(modelItem => item.Title.Name)</h2>
+                <p> @Html.DisplayFor(modelItem => item.ID) </p>
+                <p><strong>Year</strong> @Html.DisplayFor(modelItem => item.Year) </p>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Resume)
+                </p>
+                <p><a class="btn btn-default">Ver trailer</a></p>
+            </div>
+        }
     }
 
 
-    
 </div>

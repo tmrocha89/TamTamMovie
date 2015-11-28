@@ -8,15 +8,13 @@ namespace TTMovieModel.Model
 {
     public class Genre
     {
-        public string Name
+        public string Name { get; private set; }
+
+        public Genre(string name)
         {
-            get { return this.Name; }
-            set
+            if (!String.IsNullOrWhiteSpace(name))
             {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    this.Name = value.Trim();
-                }
+                this.Name = name.Trim();
             }
         }
     }

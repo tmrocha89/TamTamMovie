@@ -9,7 +9,14 @@
 
     <div class="col-md-3 col-sm-5 col-xs-12" onclick="setMovieInMainContent('@item.ID')" >
         <div  style="position:relative;">
-            <img src="http://myrwithlove.com/wp-content/uploads/2015/10/saw-v-poster2.jpg" class="img-responsive" alt="Cinque Terre">
+            @{ 
+                string urlImg = "https://dstr1e5ux65sg.cloudfront.net/dstr1e5ux65sg.cloudfront.net/fd/9c/1da0e5d9414b82e2339ff83da622/automatic/214x317/ACenturyOfBlackCinema_214x317.jpg";
+                if(item.Cover != null)
+                {
+                    urlImg = item.Cover.Link;
+                }
+            }
+            <img id="@item.ID" src="@urlImg" class="img-responsive" alt="@item.Title.Name">
             <div style="background-color: #000;
                         bottom: 0;
                         right: auto;

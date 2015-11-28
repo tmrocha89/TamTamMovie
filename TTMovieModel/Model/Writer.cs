@@ -8,14 +8,13 @@ namespace TTMovieModel.Model
 {
     public class Writer
     {
-        public string Name {
-            get { return this.Name; }
-            set
+        public string Name { get; private set; }
+
+        public Writer(string name)
+        {
+            if (!String.IsNullOrWhiteSpace(name))
             {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    this.Name = value.Trim();
-                }
+                this.Name = name.Trim();
             }
         }
     }

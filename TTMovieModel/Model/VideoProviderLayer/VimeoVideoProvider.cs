@@ -8,5 +8,9 @@ namespace TTMovieModel.Model
 {
     public class VimeoVideoProvider : IVideoProvider
     {
+        public IList<Video> GetVideoFor(string movieID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

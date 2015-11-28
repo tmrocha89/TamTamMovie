@@ -8,14 +8,18 @@ namespace TTMovieModel.Model
 {
     public class Director
     {
-        public string Name {
-            get { return this.Name; }
-            set
+        public string Name { get; private set; }
+
+        public Director(string name)
+        {
+            setName(name);
+        }
+
+        private void setName(string name)
+        {
+            if (!String.IsNullOrWhiteSpace(name))
             {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    this.Name = value.Trim();
-                }
+                this.Name = name.Trim();
             }
         }
     }
