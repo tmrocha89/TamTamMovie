@@ -52,10 +52,5 @@ namespace TamTamMovie.Controllers
 
             return View("ViewMovieDetailInfo", movie);
         }
-
-        private IList<string> GetSocialNetworkAvailable()
-        {
-            return repository.GetSocialNetworkAvailable();
-        }
     }
 }

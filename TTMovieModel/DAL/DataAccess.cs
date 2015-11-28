@@ -11,12 +11,10 @@ namespace TTMovieModel.DAL
     {
 
         private MovieDataAccess movieDA;
-        private SocialNetworkDataAccess socialDA;
 
         public DataAccess()
         {
             movieDA = new MovieDataAccess();
-            socialDA = new SocialNetworkDataAccess();
         }
 
         public async Task<IList<Movie>> GetMovies(string movieName)
@@ -32,11 +30,6 @@ namespace TTMovieModel.DAL
         public async Task<Image> GetCoverFor(string movieID)
         {
             return await movieDA.GetCoverFor(movieID);
-        }
-
-        public IList<string> GetSocialNetworkAvailable()
-        {
-            return socialDA.GetSocialNetworkAvailable();
         }
 
         public Task<Movie> GetInformationFor(Movie movie)

@@ -58,11 +58,6 @@ namespace TamTamMovie.Models
             return image;
         }
 
-        internal IList<string> GetSocialNetworkAvailable()
-        {
-            return dataAccess.GetSocialNetworkAvailable();
-        }
-
         public void Clear()
         {
             MovieCache.Clear();
