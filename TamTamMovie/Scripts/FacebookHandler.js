@@ -50,9 +50,7 @@ window.fbAsyncInit = function () {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function shareVideo() {
-    var body = InformationToShare();
-
-    FB.api('/me/feed', 'post', { message: body }, function (response) {
+    FB.api('/me/feed', 'post', InformationToShare() , function (response) {
         if (!response || response.error) {
             alert("Error post");
             console.log(response.error);
@@ -66,12 +64,10 @@ var InformationToShare = function () {
     var mainDiv = document.getElementById('MovieDetailInformation');
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
     var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
-
     return {
         message: movieTitle,
         source: movieTrailer
     };
-    //return movieTitle + "\n\n" + movieTrailer;
 };
 
 var login = function (data) {
