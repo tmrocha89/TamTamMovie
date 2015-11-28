@@ -67,7 +67,11 @@ var InformationToShare = function () {
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
     var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
 
-    return movieTitle + "\n\n" + movieTrailer;
+    return {
+        message: movieTitle,
+        url: movieTrailer
+    };
+    //return movieTitle + "\n\n" + movieTrailer;
 };
 
 var login = function (data) {
