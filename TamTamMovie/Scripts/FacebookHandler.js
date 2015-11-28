@@ -69,7 +69,7 @@ var InformationToShare = function () {
 
     return {
         message: movieTitle,
-        picture: movieTrailer
+        source: movieTrailer
     };
     //return movieTitle + "\n\n" + movieTrailer;
 };
