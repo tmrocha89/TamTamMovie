@@ -54,8 +54,15 @@ function shareVideo() {
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
     var movieThumbnail = mainDiv.getElementsByTagName('span')[0].innerText;
     var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
+    var movieResume = mainDiv.getElementById('movieResume').innerText;
 
-    FB.api('/me/feed', 'post', { message: movieTitle, source: movieTrailer, picture: movieThumbnail },
+    FB.api('/me/feed', 'post',
+                    {
+                        message: movieTitle,
+                        source: movieTrailer,
+                        picture: movieThumbnail,
+                        description: movieResume
+                    },
         function (response) {
         if (!response || response.error) {
             alert("Error post");
