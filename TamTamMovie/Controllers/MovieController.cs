@@ -17,26 +17,19 @@ namespace TamTamMovie.Controllers
 
         // GET: api/Movie/5
         public async Task<string> Get(string movieName,
-            string movieID = "",
+            bool isID = false,
             bool? details=false,
             bool? cover=false)
         {
             if (!String.IsNullOrWhiteSpace(movieName))
             {
-                
-                if (details == true)
-                {
-                    return await repository.GetMoviesToSend(movieName, false);
-                }
+                if(!isID)
+                    return await repository.GetMoviesToSend(movieName, (bool)details);
                 else
-                {
-                    // guardo o objeto com a informacao completa
-                }
-
+                    return await repository.GetMoviesToSend(movieName, (bool)details, (bool)cover);
             }
+
             return "";
-            //IList<Movie> movies = await GetMoviesBasicInformation();
-            //valor = repository.getMovieToSend(movies);
         }
 
 

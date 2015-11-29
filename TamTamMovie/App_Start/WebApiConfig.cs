@@ -16,8 +16,9 @@ namespace TamTamMovie
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{movieID}/",
-                defaults: new { movieID = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{movieName}/{isID}/",
+                defaults: new { movieName = RouteParameter.Optional,
+                                isID = RouteParameter.Optional}
             );
 
            

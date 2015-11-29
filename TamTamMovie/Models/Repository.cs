@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 using TamTamMovie.Models.ModelView;
 using TTMovieModel.DAL;
 using TTMovieModel.Model;
@@ -154,5 +150,25 @@ namespace TamTamMovie.Models
             return json;
         }
 
+        public async Task<string> GetMoviesToSend(string movieID, bool details, bool cover)
+        {
+            MovieDTO dtoMovie;
+            if (details)
+            {
+                dtoMovie = MovieToDTO(await LoadDetailedData(movieID));
+            }else if (cover)
+            {
+                Movie movie = MovieCache.getMovie(movieID);
+                movie.Cover = await GetCoverFor(movieID);
+                dtoMovie = MovieToDTO(movie);
+            }
+            else
+            {
+                return "{error: Invalid Request}";
+            }
+
+            var json = JsonConvert.SerializeObject(dtoMovie);
+            return json;
+        }
     }
 }
