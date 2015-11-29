@@ -21,21 +21,36 @@
         <h3>Year: @Model.Year</h3>
         
         <h4>Writer(s)</h4>
-        @foreach (var wt in Model.Writers)
-        {
-            <p>@wt.Name</p>
+
+        @{ string writers = "";
+            foreach (var wt in Model.Writers)
+            {
+                writers = wt.Name + " ,";
+            }
+            writers += writers.Substring(0, writers.Length - 2);
+            <p>@writers</p>
         }
 
         <h4>Directors</h4>
-        @foreach (var dir in Model.Directors)
-        {
-            <p>@dir.Name</p>
-        }
+        @{
+            string directors = "";
+            foreach (var dir in Model.Directors)
+            {
+                directors += dir.Name + " ,";
+            }
+            directors = directors.Substring(0, directors.Length - 2);
+            <p>@directors</p>
+         }
 
         <h4>Stars</h4>
-        @foreach (var star in Model.Stars)
-        {
-            <p>@star.Name</p>
+        @{
+            string stars = "";
+            foreach (var star in Model.Stars)
+            {
+                stars += star.Name + " ,";
+            }
+            stars = stars.Substring(0, stars.Length - 2);
+            <p>@stars</p>
         }
 
         <h4>Resume</h4>
