@@ -119,7 +119,8 @@ namespace TamTamMovie.Models
                 dto.Trailers.Add(new VideoDTO(trailer.Link, trailer.Thumbnail.Link));
             }
             dto.Resume = movie.Resume;
-            dto.CoverUrl = movie.Cover.Link;
+            if(movie.Cover!=null)
+                dto.CoverUrl = movie.Cover.Link;
             
             return dto;
         }

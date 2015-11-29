@@ -26,7 +26,7 @@ namespace TamTamMovie.Controllers
                 
                 if (details == true)
                 {
-                    return await repository.GetMoviesToSend(movieName, true);
+                    return await repository.GetMoviesToSend(movieName, false);
                 }
                 else
                 {
