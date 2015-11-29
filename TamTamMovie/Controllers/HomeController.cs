@@ -52,5 +52,6 @@ namespace TamTamMovie.Controllers
 
             return View("ViewMovieDetailInfo", movie);
         }
+
     }
 }
