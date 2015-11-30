@@ -13,7 +13,7 @@ namespace TamTamMovie.Controllers
     {
 
         // private Repository repository = new Repository();
-        private const string BASE_URL = "http://tamtammovie.azurewebsites.net/";// "http://localhost:51191/";
+        private const string BASE_URL = "http://tamtammovie.azurewebsites.net/";
 
         public ActionResult Index(string id)
         {

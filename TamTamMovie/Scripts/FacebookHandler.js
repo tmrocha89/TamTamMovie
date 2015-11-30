@@ -52,8 +52,9 @@ window.fbAsyncInit = function () {
 function shareVideo() {
     var mainDiv = document.getElementById('MovieDetailInformation');
     var movieTitle = mainDiv.getElementsByTagName('h2')[0].innerText;
-    var movieThumbnail = mainDiv.getElementsByTagName('span')[0].innerText;
-    var movieTrailer = mainDiv.getElementsByTagName('iframe')[0].getAttribute('src');
+    var activeElement = mainDiv.getElementsByClassName('item active')[0];
+    var movieThumbnail = activeElement.getElementsByTagName('span')[0].innerText;
+    var movieTrailer = activeElement.getElementsByTagName('iframe')[0].getAttribute('src');
     var movieResume = document.getElementById('movieResumeText').innerText;
 
     FB.api('/me/feed', 'post',

@@ -18,69 +18,6 @@ namespace TamTamMovie.Models
             dataAccess = new DataAccess();
         }
 
-        private IList<Movie> getCachedMovies()
-        {
-            return MovieCache.GetMovies(null);
-        }
-
-        public async Task<IList<Movie>> GetMovies(string movieName)
-        {
-            Clear();
-            IList<Movie> movies = null;
-            movies = MovieCache.GetMovies(movieName);
-            if(movies == null || movies.Count == 0)
-            {
-                movies = await dataAccess.GetMovies(movieName);
-                MovieCache.AddMovies(movieName, movies);
-            }
-
-            return movies;
-        }
-/*
-        public void LoadVideos()
-        {
-            IList<Movie> movies = MovieCache.GetMovies();
-            foreach(Movie mov in movies)
-            {
-                IList<Video> videos = dataAccess.GetVideoFor(mov.ID);
-            }
-        }
-        */
-        public async Task<Image> GetCoverFor(string movieID)
-        {
-            Movie movie = MovieCache.getMovie(movieID);
-            if (movie != null && movie.hasCover())
-            {
-                return movie.Cover;
-            }
-            Image image = await dataAccess.GetCoverFor(movieID);
-            if(image != null)
-            {
-                movie.Cover = image;
-                MovieCache.UpdateMovie(movie);
-            }
-            return image;
-        }
-
-        public void Clear()
-        {
-            MovieCache.Clear();
-        }
-
-        public async Task<Movie> LoadDetailedData(string movieID)
-        {
-            Movie movie = MovieCache.getMovie(movieID);
-            if (movie != null)
-            {
-                movie = await dataAccess.GetInformationFor(movie);
-                movie.Trailers = dataAccess.GetVideoFor(movie.Title.Name);
-                MovieCache.UpdateMovie(movie);
-                return movie;
-            }
-            return null;
-        }
-
-
         private IList<MovieDTO> MoviesToDTO(IList<Movie> movies)
         {
             IList<MovieDTO> dtoMovies = new List<MovieDTO>();
@@ -117,10 +54,62 @@ namespace TamTamMovie.Models
             }
             dto.Resume = movie.Resume;
             dto.CoverUrl = movie.Cover != null ? movie.Cover.Link : null;
-            
+
             return dto;
         }
 
+        private IList<Movie> getCachedMovies()
+        {
+            return MovieCache.GetMovies(null);
+        }
+
+        public async Task<IList<Movie>> GetMovies(string movieName)
+        {
+            Clear();
+            IList<Movie> movies = null;
+            movies = MovieCache.GetMovies(movieName);
+            if(movies == null || movies.Count == 0)
+            {
+                movies = await dataAccess.GetMovies(movieName);
+                MovieCache.AddMovies(movieName, movies);
+            }
+
+            return movies;
+        }
+
+        public async Task<Image> GetCoverFor(string movieID)
+        {
+            Movie movie = MovieCache.getMovie(movieID);
+            if (movie != null && movie.hasCover())
+            {
+                return movie.Cover;
+            }
+            Image image = await dataAccess.GetCoverFor(movieID);
+            if(image != null)
+            {
+                movie.Cover = image;
+                MovieCache.UpdateMovie(movie);
+            }
+            return image;
+        }
+
+        public void Clear()
+        {
+            MovieCache.Clear();
+        }
+
+        public async Task<Movie> LoadDetailedData(string movieID)
+        {
+            Movie movie = MovieCache.getMovie(movieID);
+            if (movie != null)
+            {
+                movie = await dataAccess.GetInformationFor(movie);
+                movie.Trailers = dataAccess.GetVideoFor(movie.Title.Name);
+                MovieCache.UpdateMovie(movie);
+                return movie;
+            }
+            return null;
+        }
 
         public async Task<string> GetMoviesToSend(string movieName, bool details)
         {
@@ -170,5 +159,6 @@ namespace TamTamMovie.Models
             var json = JsonConvert.SerializeObject(dtoMovie);
             return json;
         }
+
     }
 }

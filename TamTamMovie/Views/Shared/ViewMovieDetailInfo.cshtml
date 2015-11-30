@@ -4,7 +4,6 @@
 }
 @Scripts.Render("~/Scripts/FacebookHandler.js")
 
-<!-- aa -->
 <div class="container">
     <div class="col-md-6">
         <div class="span8">
@@ -22,6 +21,7 @@
                         var activeStr = i == 0 ? "item active" : "item";
                         var videoSrc = Model.Trailers[i].Link + "?controls=0";
                         <div class="@activeStr">
+                            <span style="display: none;">@Model.Trailers[i].Thumbnail </span>
                             <iframe width="560" height="315" src="@videoSrc" frameborder="0" allowfullscreen=""></iframe>
                         </div>
                     }
@@ -30,13 +30,6 @@
                 <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
             </div>
         </div>
- 
-
-<!-- aa -->
-
-
-        
-
 
 
             <div id="SocialNetworkButtons">
