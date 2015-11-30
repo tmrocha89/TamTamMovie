@@ -12,17 +12,20 @@ namespace TamTamMovie.Models
     public static class MovieCache
     {
 
-        public static void AddMovies(IList<Movie> movies)
+        public static void AddMovies(string movieName, IList<Movie> movies)
         {
             Clear(); // Clear cache to store only the items that are display
+            HttpContext.Current.Cache["movieName"] = movieName;
             foreach (Movie movie in movies)
             {
                 HttpContext.Current.Cache[movie.ID] = movie;
             }
         }
 
-        public static IList<Movie> GetMovies()
+        public static IList<Movie> GetMovies(string movieName)
         {
+            if (movieName != null && movieName != (string)HttpContext.Current.Cache["movieName"])
+                return null;
             IList<Movie> movies = new List<Movie>();
             foreach (DictionaryEntry DEmovie in HttpContext.Current.Cache)
             {
@@ -59,7 +62,7 @@ namespace TamTamMovie.Models
             }
         }
 
-        internal static void UpdateMovie(Movie movie)
+        public static void UpdateMovie(Movie movie)
         {
             HttpContext.Current.Cache[movie.ID] = movie;
         }

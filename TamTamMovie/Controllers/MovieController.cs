@@ -34,9 +34,9 @@ namespace TamTamMovie.Controllers
         }
 
 
-        private async Task<IList<Movie>> GetMoviesBasicInformation()
+        private async Task<IList<Movie>> GetMoviesBasicInformation(string movieName)
         {
-            return await repository.GetMovies("Minions");
+            return await repository.GetMovies(movieName);
         }
 
         private async Task<string> LoadCoverFor(string movieID)

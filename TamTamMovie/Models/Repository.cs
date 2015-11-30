@@ -20,23 +20,23 @@ namespace TamTamMovie.Models
 
         private IList<Movie> getCachedMovies()
         {
-            return MovieCache.GetMovies();
+            return MovieCache.GetMovies(null);
         }
 
         public async Task<IList<Movie>> GetMovies(string movieName)
         {
             Clear();
             IList<Movie> movies = null;
-            movies = MovieCache.GetMovies();
+            movies = MovieCache.GetMovies(movieName);
             if(movies == null || movies.Count == 0)
             {
                 movies = await dataAccess.GetMovies(movieName);
-                MovieCache.AddMovies(movies);
+                MovieCache.AddMovies(movieName, movies);
             }
 
             return movies;
         }
-
+/*
         public void LoadVideos()
         {
             IList<Movie> movies = MovieCache.GetMovies();
@@ -45,7 +45,7 @@ namespace TamTamMovie.Models
                 IList<Video> videos = dataAccess.GetVideoFor(mov.ID);
             }
         }
-
+        */
         public async Task<Image> GetCoverFor(string movieID)
         {
             Movie movie = MovieCache.getMovie(movieID);
@@ -116,8 +116,7 @@ namespace TamTamMovie.Models
                 dto.Trailers.Add(new VideoDTO(trailer.Link, trailer.Thumbnail.Link));
             }
             dto.Resume = movie.Resume;
-            if(movie.Cover!=null)
-                dto.CoverUrl = movie.Cover.Link;
+            dto.CoverUrl = movie.Cover != null ? movie.Cover.Link : null;
             
             return dto;
         }

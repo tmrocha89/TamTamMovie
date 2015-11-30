@@ -17,9 +17,13 @@ namespace TTMovieModel.Model
 
         private void SetLink(string link)
         {
-            if (!String.IsNullOrWhiteSpace(link))
+            if (!String.IsNullOrWhiteSpace(link) && link != "N/A")
             {
                 this.Link = link;
+            }
+            else
+            {
+                Link = null;
             }
         }
     }

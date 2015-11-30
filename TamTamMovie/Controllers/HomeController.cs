@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using TamTamMovie.Models.ModelView;
 using Newtonsoft.Json;
+using System;
 
 namespace TamTamMovie.Controllers
 {
@@ -16,29 +17,29 @@ namespace TamTamMovie.Controllers
 
         public ActionResult Index(string id)
         {
-            if (id != null)
-                Debug.WriteLine(id);
             ViewBag.Title = "Home Page";
             IList<MovieDTO> movies = new List<MovieDTO>();
             return View();
         }
 
 
-        public async Task<ActionResult> GetMoviesBasicInformation()
+        public async Task<ActionResult> GetMoviesBasicInformation(string movieName)
         {
-            string movieName = "Minions";
-            using (HttpClient client = new HttpClient())
+            if (!String.IsNullOrWhiteSpace(movieName))
             {
-                client.BaseAddress = new System.Uri(BASE_URL);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                string req = "api/Movie/" + movieName + "/false";
-                HttpResponseMessage response = await client.GetAsync(req);
-                if (response.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    var strDtoMovies = await response.Content.ReadAsAsync<string>();
-                    IList<MovieDTO> dtoMovies = JsonConvert.DeserializeObject<List<MovieDTO>>(strDtoMovies);
-                    return View("ViewMovieInformation", dtoMovies);
+                    client.BaseAddress = new System.Uri(BASE_URL);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    string req = "api/Movie/" + movieName + "/false";
+                    HttpResponseMessage response = await client.GetAsync(req);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var strDtoMovies = await response.Content.ReadAsAsync<string>();
+                        IList<MovieDTO> dtoMovies = JsonConvert.DeserializeObject<List<MovieDTO>>(strDtoMovies);
+                        return View("ViewMovieInformation", dtoMovies);
+                    }
                 }
             }
             return View("ViewMovieInformation", null);

@@ -10,13 +10,10 @@
     <div class="col-md-3 col-sm-5 col-xs-12" onclick="setMovieInMainContent('@item.ID')" >
         <div  style="position:relative;">
             @{ 
-                string urlImg = "https://dstr1e5ux65sg.cloudfront.net/dstr1e5ux65sg.cloudfront.net/fd/9c/1da0e5d9414b82e2339ff83da622/automatic/214x317/ACenturyOfBlackCinema_214x317.jpg";
-                if(item.CoverUrl != null)
-                {
-                    urlImg = item.CoverUrl;
-                }
+                string urlImg = item.CoverUrl != null ? item.CoverUrl : "https://dstr1e5ux65sg.cloudfront.net/dstr1e5ux65sg.cloudfront.net/fd/9c/1da0e5d9414b82e2339ff83da622/automatic/214x317/ACenturyOfBlackCinema_214x317.jpg";
+
             }
-            <img id="@item.ID" src="@urlImg" class="img-responsive" alt="@item.Title">
+            <img id="@item.ID" src="@urlImg" class="img-responsive" alt="@item.Title" style="width:262px; height:360px; margin-top:20px">
             <div style="background-color: #000;
                         bottom: 0;
                         right: auto;

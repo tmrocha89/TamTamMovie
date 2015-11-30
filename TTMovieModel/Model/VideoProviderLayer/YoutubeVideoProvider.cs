@@ -16,8 +16,9 @@ namespace TTMovieModel.Model
     public class YoutubeVideoProvider : IVideoProvider
     {
         private const string API_KEY = "AIzaSyCh7VANgjDUfuLsH-nMOAzwC04c8CL8Fwo";
-        private const string EMBEBED_BASE_URL = "https://youtube.com/v/"; //"https://youtu.be/";
+        private const string EMBEBED_BASE_URL = "https://www.youtube.com/embed/";
         private const int MAX_RESULTS = 10;
+        private const string PREFIX = "Trailer ";
 
 
         public IList<Video> GetVideoFor(string videoName)
@@ -29,14 +30,14 @@ namespace TTMovieModel.Model
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = videoName;
+            searchListRequest.Q = PREFIX+videoName;
             searchListRequest.MaxResults = MAX_RESULTS;
 
             // Call the search.list method to retrieve results matching the specified query term.
-            var searchListResponse = /*await*/ searchListRequest.Execute(); // ExecuteAsync();
+            var searchListResponse = searchListRequest.Execute();
 
             IList<Video> videos = new List<Video>();
-            Debug.WriteLine(" A obter videos do youtube ");
+
             foreach (var searchResult in searchListResponse.Items)
             {
 

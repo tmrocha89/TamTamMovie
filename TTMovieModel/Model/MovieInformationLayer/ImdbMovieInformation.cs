@@ -38,12 +38,17 @@ namespace TTMovieModel.Model
                 for (int i = 0; i < jobject.Count; i++)
                 {
                     var jsonMovie = jobject[arrayNames[i]];
-                    foreach (var jMovie in jsonMovie)
+                    try {
+                        foreach (var jMovie in jsonMovie)
+                        {
+                            Movie movieTmp = parser.GetBasicMovieInformation(jMovie);
+                            movies.Add(movieTmp);
+                            //movies.Add( await getFullDescriptionFor(movieTmp));
+                            Debug.WriteLine(movies.Count);
+                        }
+                    }catch(NullReferenceException ex)
                     {
-                        Movie movieTmp = parser.GetBasicMovieInformation(jMovie);
-                        movies.Add(movieTmp);
-                        //movies.Add( await getFullDescriptionFor(movieTmp));
-                        Debug.WriteLine(movies.Count);
+                        Debug.WriteLine(ex.Message);
                     }
 
                 }
