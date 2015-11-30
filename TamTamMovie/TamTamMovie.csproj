@@ -216,6 +216,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientWeb\Repository.cs" />
     <Compile Include="Models\ModelView\MovieDTO.cs" />
     <Compile Include="Models\ModelView\VideoDTO.cs" />
     <Compile Include="Models\MovieCache.cs" />
