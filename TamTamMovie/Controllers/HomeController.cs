@@ -13,7 +13,7 @@ namespace TamTamMovie.Controllers
     {
 
         // private Repository repository = new Repository();
-        private const string BASE_URL = Request.Url.AbsolutePath;// "http://localhost:51191/";
+        private const string BASE_URL = "http://localhost/";// "http://localhost:51191/";
 
         public ActionResult Index(string id)
         {
