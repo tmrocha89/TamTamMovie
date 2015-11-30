@@ -21,7 +21,7 @@
                         var activeStr = i == 0 ? "item active" : "item";
                         var videoSrc = Model.Trailers[i].Link + "?controls=0";
                         <div class="@activeStr">
-                            <span style="display: none;">@Model.Trailers[i].Thumbnail </span>
+                            <span style="display: none;">@Model.Trailers[i].Thumbnail</span>
                             <iframe width="560" height="315" src="@videoSrc" frameborder="0" allowfullscreen=""></iframe>
                         </div>
                     }

@@ -12,7 +12,6 @@ namespace TamTamMovie.Controllers
     public class HomeController : AsyncController
     {
 
-        // private Repository repository = new Repository();
         private const string BASE_URL = "http://tamtammovie.azurewebsites.net/";
 
         public ActionResult Index(string id)
