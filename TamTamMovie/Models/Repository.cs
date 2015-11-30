@@ -93,6 +93,7 @@ namespace TamTamMovie.Models
         {
             MovieDTO dto = new MovieDTO();
             dto.ID = movie.ID;
+            dto.Year = movie.Year;
             dto.Title = movie.Title.Name;
             foreach (var star in movie.Stars)
             {
