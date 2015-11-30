@@ -12,8 +12,8 @@ namespace TamTamMovie.Controllers
     public class HomeController : AsyncController
     {
 
-       // private Repository repository = new Repository();
-        private const string BASE_URL = "http://localhost:51191/";
+        // private Repository repository = new Repository();
+        private const string BASE_URL = Request.Url.AbsolutePath;// "http://localhost:51191/";
 
         public ActionResult Index(string id)
         {
