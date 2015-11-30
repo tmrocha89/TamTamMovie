@@ -16,7 +16,8 @@ namespace TamTamMovie.Controllers
 
 
         // GET: api/Movie/5
-        public async Task<string> Get(string movieName,
+        public async Task<string> Get(
+            string movieName,
             bool isID = false,
             bool? details=false,
             bool? cover=false)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TTMovieModel.Model.Movie>
+﻿@model IEnumerable<TamTamMovie.Models.ModelView.MovieDTO>
 
 @{
     Layout = "";
@@ -11,12 +11,12 @@
         <div  style="position:relative;">
             @{ 
                 string urlImg = "https://dstr1e5ux65sg.cloudfront.net/dstr1e5ux65sg.cloudfront.net/fd/9c/1da0e5d9414b82e2339ff83da622/automatic/214x317/ACenturyOfBlackCinema_214x317.jpg";
-                if(item.Cover != null)
+                if(item.CoverUrl != null)
                 {
-                    urlImg = item.Cover.Link;
+                    urlImg = item.CoverUrl;
                 }
             }
-            <img id="@item.ID" src="@urlImg" class="img-responsive" alt="@item.Title.Name">
+            <img id="@item.ID" src="@urlImg" class="img-responsive" alt="@item.Title">
             <div style="background-color: #000;
                         bottom: 0;
                         right: auto;
@@ -25,7 +25,7 @@
                         position: absolute;
                         width: 100%;">
                 <div style="padding-left:10px;">
-                    <h3 >@Html.DisplayFor(modelItem => item.Title.Name)</h3>
+                    <h3 >@Html.DisplayFor(modelItem => item.Title)</h3>
                     @Html.HiddenFor(modelItem => item.ID)
                     <h4>@Html.DisplayFor(modelItem => item.Year)</h4>
                 </div>

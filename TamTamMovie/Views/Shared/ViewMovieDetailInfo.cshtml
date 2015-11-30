@@ -1,11 +1,11 @@
-﻿@model TTMovieModel.Model.Movie
+﻿@model TamTamMovie.Models.ModelView.MovieDTO
 @{
     Layout = "";
 }
 @Scripts.Render("~/Scripts/FacebookHandler.js")
 <div class="row">
     <div class="col-md-6">
-        <span style="display: none;">@Model.Trailers[0].Thumbnail.Link </span>
+        <span style="display: none;">@Model.Trailers[0].Thumbnail </span>
         <!-- source : https://benmarshall.me/responsive-iframes/ -->
         <div class="embed-responsive embed-responsive-16by9" style="overflow:hidden;position:relative; height:0;padding-bottom:56.25%">
             <iframe class="embed-responsive-item" src="@Model.Trailers[0].Link" allowfullscreen style="width:100%; height:100%;position:absolute;top:0;left:0;"></iframe>
@@ -17,7 +17,7 @@
 
     <div class="col-md-6">
 
-        <h2>@Model.Title.Name</h2>
+        <h2>@Model.Title</h2>
         <h3>Year: @Model.Year</h3>
         
         <h4>Writer(s)</h4>
@@ -25,7 +25,7 @@
         @{ string writers = "";
             foreach (var wt in Model.Writers)
             {
-                writers = wt.Name + " ,";
+                writers = wt + " ,";
             }
             writers += writers.Substring(0, writers.Length - 2);
             <p>@writers</p>
@@ -36,7 +36,7 @@
             string directors = "";
             foreach (var dir in Model.Directors)
             {
-                directors += dir.Name + " ,";
+                directors += dir + " ,";
             }
             directors = directors.Substring(0, directors.Length - 2);
             <p>@directors</p>
@@ -47,7 +47,7 @@
             string stars = "";
             foreach (var star in Model.Stars)
             {
-                stars += star.Name + " ,";
+                stars += star + " ,";
             }
             stars = stars.Substring(0, stars.Length - 2);
             <p>@stars</p>
